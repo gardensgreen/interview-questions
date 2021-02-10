@@ -22,3 +22,43 @@ results = [0, 0, 1]
 ```python
 "Python"
 ```
+
+## Pseudocode
+
+-   Init a HashMap to keep track of team's wins
+-   Traverse through Competitions indexes
+    -   if results at that index is 0
+        -   if away team is already in hashmap, increment value by one
+        -   if not set its value to 1
+    -   else (result is 1)
+        -   if home team is already in hashmap, increment value by one
+        -   if not set its value to 1
+-   init a max integer to determine max wins
+-   traverse through hashmap values (scores)
+    -   if score is greater than max, set max to score
+-   find the index of the max value in the hashmap values
+-   return team at that index in hashmap keys
+
+## Solution
+
+```python
+def tournament_winner(competitions, results):
+    scores = {}
+    for i in range(len(competitions)):
+        if(results[i] == 0):
+            if(competitions[i][1] in scores):
+                scores[competitions[i][1]] += 1
+            else:
+                scores[competitions[i][1]] = 1
+        else:
+             if(competitions[i][0] in scores):
+                scores[competitions[i][0]] += 1
+            else:
+                scores[competitions[i][0]] = 1
+    max = 1
+    for score in score.values():
+        if score > max:
+            max = score
+    maxIdx = list(scores.values()).index(max);
+    return list(scores.keys())[maxIdx]
+```
